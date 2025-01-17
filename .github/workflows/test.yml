@@ -1,0 +1,33 @@
+name: Test
+
+on:
+  workflow_dispatch:
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  test-tauri:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # - platform: "macos-latest" # for Arm based macs (M1 and above).
+          #   args: "--target aarch64-apple-darwin"
+          # - platform: "macos-latest" # for Intel based macs.
+          #   args: "--target x86_64-apple-darwin"
+          # - platform: "ubuntu-22.04" # for Tauri v1 you could replace this with ubuntu-20.04.
+          #   args: ""
+          - platform: "windows-latest"
+            args: ""
+
+    runs-on: ${{ matrix.platform }}
+    steps:
+    - run: New-Item -ItemType Directory -Path ${{ github.workspace }}\myDoc
+    - run: Set-Content -Path ${{ github.workspace }}\myDoc\hello.txt -Value "hello 123" -Encoding utf8
+    - uses: actions/upload-artifact@v4
+    with:
+      name: my-artifact
+      path: ${{ github.workspace }}\myDoc\hello.txt
+      
+
