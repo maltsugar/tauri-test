@@ -66,6 +66,9 @@ import http, { token } from "@/utils/http.js"
 import { saveValue, getValue } from "@/utils/store.js"
 import { enable, isEnabled, disable } from '@tauri-apps/plugin-autostart'
 
+import { createTray } from "@/utils/tray.js"
+
+
 const username = ref("")
 const password = ref("")
 const autoStart = ref(false)
@@ -111,6 +114,8 @@ const handleSaveAction = async () => {
     disable()
   }
   startReq()
+
+  createTray()
 }
 
 const startReq = async () => {
