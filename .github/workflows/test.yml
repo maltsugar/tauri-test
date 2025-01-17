@@ -1,4 +1,4 @@
-name: Test
+name: Test-PowerShell
 
 on:
   workflow_dispatch:
