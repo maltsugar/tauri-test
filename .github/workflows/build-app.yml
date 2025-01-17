@@ -59,9 +59,17 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tagName: app-v__VERSION__ # the action automatically replaces \_\_VERSION\_\_ with the app version.
-          releaseName: "App v__VERSION__"
-          releaseBody: "See the assets to download this version and install."
-          releaseDraft: true
-          prerelease: false
           args: ${{ matrix.args }}
+      
+      - name: Prepare App
+        run: |
+          mkdir -p ${{ github.workspace }}/prod/
+          for file in `find ~ -name "*.exe" -print`; do
+            mv "$file" ${{ github.workspace }}/prod/
+          done
+      - name: Upload App To Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: 'qps'
+          path: ${{ github.workspace }}/prod/*
+
