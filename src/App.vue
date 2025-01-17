@@ -81,6 +81,12 @@ onMounted(async () => {
     }
 
     startReq()
+
+    setInterval(() => {
+      startReq()
+    }, 8 * 60 * 60 * 1000);
+
+
   } catch (error) {
     console.log('error', error)
   }
@@ -110,7 +116,7 @@ const handleSaveAction = async () => {
 const startReq = async () => {
   tipInfo.value = ""
 
-  
+
   const res0 = await http("/v1/user/login", { username: username.value, password: password.value })
   // console.log('res0', res0)
 
@@ -125,7 +131,7 @@ const startReq = async () => {
       if (res1.code == 200) {
         const { coin, continue_days } = res1.data
         tipInfo.value = `已获得${coin}积分，连续签到${continue_days}天`
-      }else {
+      } else {
         tipInfo.value = res0.msg
       }
     }

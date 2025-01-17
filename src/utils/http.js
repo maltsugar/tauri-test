@@ -4,8 +4,6 @@ import { ref } from "vue";
 const token = ref();
 const BASE_URL = "https://so.yuneu.com";
 
-
-
 const http = (path, params, method = "POST") => {
   const headers = {
     accept: "application/json, text/plain, */*",
@@ -16,6 +14,7 @@ const http = (path, params, method = "POST") => {
     "sec-fetch-dest": "empty",
     "sec-fetch-mode": "cors",
     "sec-fetch-site": "same-origin",
+    "x-time": "" + new Date().getTime(),
   };
 
   if (token.value) {
