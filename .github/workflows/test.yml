@@ -23,6 +23,9 @@ jobs:
 
     runs-on: ${{ matrix.platform }}
     steps:
+    - run: Write-Host "Hello, World!"
+    - run: Write-Output ${{ github.workspace }}
+    - run: Write-Host "log end"
     - run: New-Item -ItemType Directory -Path ${{ github.workspace }}\myDoc
     - run: Set-Content -Path ${{ github.workspace }}\myDoc\hello.txt -Value "hello 123" -Encoding utf8
     - uses: actions/upload-artifact@v4
