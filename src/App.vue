@@ -67,6 +67,11 @@ import { saveValue, getValue } from "@/utils/store.js"
 import { enable, isEnabled, disable } from '@tauri-apps/plugin-autostart'
 
 import { createTray } from "@/utils/tray.js"
+import { listen } from '@tauri-apps/api/event';
+
+
+
+
 
 
 const username = ref("")
@@ -97,6 +102,12 @@ onMounted(async () => {
   const auto = await isEnabled()
   autoStart.value = auto
 
+  createTray()
+
+  listen('didClickClose', (event) => {
+    console.log("点击关闭", event)
+  });
+
 })
 
 
@@ -114,8 +125,6 @@ const handleSaveAction = async () => {
     disable()
   }
   startReq()
-
-  createTray()
 }
 
 const startReq = async () => {

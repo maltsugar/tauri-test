@@ -14,7 +14,8 @@
       {
         "title": "全盘搜",
         "width": 400,
-        "height": 500
+        "height": 500,
+        "maximizable": false
       }
     ],
     "security": {
