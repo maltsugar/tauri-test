@@ -70,7 +70,7 @@ import { createTray } from "@/utils/tray.js"
 import { listen } from '@tauri-apps/api/event';
 
 
-
+window.addEventListener('contextmenu', (e) => e.preventDefault(), false);
 
 
 
@@ -79,6 +79,8 @@ const password = ref("")
 const autoStart = ref(false)
 
 onMounted(async () => {
+
+
   try {
     const { value: { name, pwd } } = await getValue()
     if (name) {
@@ -103,16 +105,13 @@ onMounted(async () => {
 
 
 
-  createTray()
+  // createTray()
 
   listen('didClickClose', (event) => {
     console.log("点击关闭", event)
   });
 
 })
-
-
-
 
 
 
@@ -129,6 +128,10 @@ const handleSaveAction = async () => {
 }
 
 const startReq = async () => {
+
+  // tipInfo.value = "test"
+  // return
+
   tipInfo.value = ""
 
 

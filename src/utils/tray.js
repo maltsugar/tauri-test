@@ -75,13 +75,26 @@ async function createMenu() {
   });
 }
 
+
+
+
 /**
  * 创建系统托盘
  */
+const trayIdKey = "__trayIdKey";
 export async function createTray() {
+
+  const trayId = sessionStorage.getItem(trayIdKey)
+  if (trayId) {
+    console.log('trayId',trayId)
+    TrayIcon.removeById(trayId)
+  }
+
   options.icon = await defaultWindowIcon();
   options.menu = await createMenu();
   const tray = await TrayIcon.new(options);
   console.log('tray',tray)
+  sessionStorage.setItem(trayIdKey, tray.id)
+
 }
 
