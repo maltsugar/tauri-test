@@ -64,7 +64,7 @@ jobs:
       - name: Prepare App
         run: |
           New-Item -ItemType Directory -Path ${{ github.workspace }}\prod
-          $exeFiles = Get-ChildItem -Path ${{ github.workspace }} -Filter "*setup.exe" -Recurse
+          $exeFiles = Get-ChildItem -Path ${{ github.workspace }}\src-tauri\target\release -Filter "*.exe" -Recurse
           foreach ($file in $exeFiles) {
               $destinationPath = Join-Path -Path ${{ github.workspace }}\prod -ChildPath $file.Name
               Copy-Item -Path $file.FullName -Destination $destinationPath
