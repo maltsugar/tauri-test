@@ -19,7 +19,11 @@
       }
     ],
     "security": {
-      "csp": null
+      "csp": "default-src 'self'; connect-src ipc: http://ipc.localhost",
+      "headers": {
+        "Cross-Origin-Opener-Policy": "same-origin",
+        "Cross-Origin-Embedder-Policy": "require-corp"
+      }
     }
   },
   "bundle": {

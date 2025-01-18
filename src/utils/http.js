@@ -6,6 +6,7 @@ const BASE_URL = "https://so.yuneu.com";
 
 const http = (path, params, method = "POST") => {
   const headers = {
+    origin: "",
     accept: "application/json, text/plain, */*",
     "accept-language": "zh-CN,zh;q=0.9,en;q=0.8",
     "content-type": "application/json",

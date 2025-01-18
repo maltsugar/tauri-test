@@ -94,13 +94,14 @@ onMounted(async () => {
       startReq()
     }, 8 * 60 * 60 * 1000);
 
+    const auto = await isEnabled()
+    autoStart.value = auto
 
   } catch (error) {
     console.log('error', error)
   }
 
-  const auto = await isEnabled()
-  autoStart.value = auto
+
 
   createTray()
 
