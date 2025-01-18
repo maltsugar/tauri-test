@@ -9,6 +9,7 @@ pub fn close_handler(app: &AppHandle<Wry>) {
     let app_clone = app.clone();
     main_window.on_window_event(move |event| {
         if let WindowEvent::CloseRequested { api, .. } = event {
+            // print!("点击关闭");
             // 阻止默认的关闭行为
             api.prevent_close();
             main_window_clone.hide().unwrap();
